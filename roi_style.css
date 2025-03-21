@@ -1,0 +1,190 @@
+.bigbot-calculator-container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+  justify-content: center;
+}
+
+.bigbot-panel {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 50%;
+  min-width: 460px;
+}
+
+.bigbot-panel h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #111;
+  font-weight: 600;
+}
+
+.bigbot-input-section {
+  margin-bottom: 30px;
+}
+
+.bigbot-input-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+}
+
+.bigbot-input-value {
+  color: #6a45ec;
+  font-weight: 600;
+}
+
+.bigbot-slider-container {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.bigbot-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e0e0e0;
+  outline: none;
+}
+
+.bigbot-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6a45ec;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bigbot-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6a45ec;
+  cursor: pointer;
+  border: none;
+}
+
+.bigbot-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.bigbot-result-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+.bigbot-result-value {
+  font-weight: 600;
+  color: #6a45ec;
+}
+
+.bigbot-note {
+  color: #777;
+  font-size: 14px;
+  margin: 15px 0 30px;
+  font-style: italic;
+}
+
+.bigbot-total-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bigbot-annual-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.bigbot-demo-button {
+  color: #FFFFFF !important;
+  border-width: 0px !important;
+  border-radius: 15px;
+  font-size: 14px;
+  font-family: 'Inter', Helvetica, Arial, Lucida, sans-serif !important;
+  background-image: linear-gradient(26deg, #5d3fd3 0%, rgba(93, 63, 211, 0.68) 100%);
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 300ms ease;
+}
+
+.bigbot-demo-button:hover {
+  background-color: #5635c9;
+  transform: scaleX(1.06) scaleY(1.06) translateX(0px) translateY(-5px) !important;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+}
+
+
+span.bigbot-annual-impact-lebel,span.bigbot-monthly-impact-lebel {
+  color: #000;
+}
+
+
+@media (max-width: 1000px) {
+  .bigbot-calculator-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .bigbot-panel {
+    width: 100%;
+    max-width: 580px;
+  }
+
+  .bigbot-panel h2 {
+    font-size: 15px;
+  }
+
+  .bigbot-input-label,
+  .bigbot-result-row {
+    font-size: 13px;
+  }
+
+  .bigbot-panel {
+    min-width: 100%;
+  }
+
+
+  .bigbot-total-row,
+  .bigbot-annual-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  span.bigbot-monthly-impact-lebel,
+  span.bigbot-annual-impact-lebel {
+    font-size: 14px;
+  }
+
+  .bigbot-note {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+
+}
