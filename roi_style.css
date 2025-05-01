@@ -32,8 +32,13 @@
   justify-content: space-between;
   margin-bottom: 10px;
   color: #333;
-  font-size: 16px;
+  align-items: end;
 }
+
+.bigbot-input-label span:first-child {
+  flex-basis: 75% !Important;
+}
+
 
 .bigbot-input-value {
   color: #6a45ec;
