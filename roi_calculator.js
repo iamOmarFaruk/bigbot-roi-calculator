@@ -4,7 +4,6 @@
  * @returns {string} The formatted currency string.
  */
 function bigbot_format_currency(amount) {
-  // Use Intl.NumberFormat for US currency
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -18,8 +17,9 @@ function bigbot_format_currency(amount) {
  */
 function bigbot_calculate_roi() {
   try {
-    // Grab DOM elements (throw if not found)
     const hoursSlider = document.getElementById("bigbot-hours-slider");
+    if (!hoursSlider) return; // Exit if calculator is not on this page
+
     const messagesSlider = document.getElementById("bigbot-messages-slider");
     const saleSlider = document.getElementById("bigbot-sale-slider");
 
@@ -33,34 +33,16 @@ function bigbot_calculate_roi() {
     const monthlyImpactEl = document.getElementById("bigbot-monthly-impact");
     const annualImpactEl = document.getElementById("bigbot-annual-impact");
 
-    if (
-      !hoursSlider ||
-      !messagesSlider ||
-      !saleSlider ||
-      !hoursValueEl ||
-      !messagesValueEl ||
-      !saleValueEl ||
-      !dailySavingsEl ||
-      !monthlySavingsEl ||
-      !monthlyRevenueEl ||
-      !monthlyImpactEl ||
-      !annualImpactEl
-    ) {
-      throw new Error("Required DOM elements are missing.");
-    }
-
-    // Parse user input
+    // Parse input values
     const hours = parseFloat(hoursSlider.value);
     const messages = parseInt(messagesSlider.value);
     const saleValue = parseFloat(saleSlider.value);
 
-    // Display slider values to UI
+    // Update UI
     hoursValueEl.textContent = `${hours} hours`;
     messagesValueEl.textContent = `${messages} messages`;
     saleValueEl.textContent = bigbot_format_currency(saleValue);
 
-    // Perform ROI calculations
-    // const hourlyRate = 30;
     const hourlyRate =
       typeof bigbotSettings !== "undefined"
         ? parseFloat(bigbotSettings.hourlyRate) || 30
@@ -73,7 +55,7 @@ function bigbot_calculate_roi() {
       monthlyEmployeeCostSavings + monthlyRevenueFromRecoveredLeads;
     const annualImpact = totalMonthlyImpact * 12;
 
-    // Update UI with calculation results
+    // Update calculated fields
     dailySavingsEl.textContent = bigbot_format_currency(dailyTimeSavings);
     monthlySavingsEl.textContent = bigbot_format_currency(
       monthlyEmployeeCostSavings
@@ -88,25 +70,21 @@ function bigbot_calculate_roi() {
   }
 }
 
-// Attach event listeners on page load
 document.addEventListener("DOMContentLoaded", () => {
+  const isROIPage = document.getElementById("bigbot-hours-slider");
+  if (!isROIPage) return; // Don’t run on pages without the calculator
+
   try {
-    // IDs for each slider we want to watch
-    const sliderIds = [
-      "bigbot-hours-slider",
-      "bigbot-messages-slider",
-      "bigbot-sale-slider",
-    ];
-
-    // Add input event listeners to each slider
-    sliderIds.forEach((id) => {
-      const slider = document.getElementById(id);
-      if (slider) {
-        slider.addEventListener("input", bigbot_calculate_roi);
+    ["bigbot-hours-slider", "bigbot-messages-slider", "bigbot-sale-slider"].forEach(
+      (id) => {
+        const slider = document.getElementById(id);
+        if (slider) {
+          slider.addEventListener("input", bigbot_calculate_roi);
+        }
       }
-    });
+    );
 
-    // Initial calculation on page load
+    // Initial run
     bigbot_calculate_roi();
   } catch (error) {
     console.error("Error initializing ROI calculator:", error);

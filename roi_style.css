@@ -10,7 +10,7 @@
 .bigbot-panel {
   background-color: white;
   border-radius: 16px;
-  padding: 40px;
+  padding:20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 50%;
   min-width: 460px;
@@ -162,7 +162,7 @@ span.bigbot-annual-impact-lebel,span.bigbot-monthly-impact-lebel {
 
   .bigbot-input-label,
   .bigbot-result-row {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .bigbot-panel {
@@ -180,6 +180,8 @@ span.bigbot-annual-impact-lebel,span.bigbot-monthly-impact-lebel {
   span.bigbot-annual-impact-lebel {
     font-size: 14px;
   }
+	
+	
 
   .bigbot-note {
     font-size: 12px;

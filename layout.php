@@ -58,7 +58,7 @@
 
     <!-- Right Panel: ROI Results -->
     <div class="bigbot-panel">
-      <h2>Your Potential ROI with Big Bot</h2>
+      <h2>Your Potential ROI with <span class="secondary_font">BigBot </span></h2>
 
       <div class="bigbot-result-row">
         <span>Daily time savings:</span>
