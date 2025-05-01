@@ -35,7 +35,7 @@ function bigbot_calculate_roi() {
 
     // Parse input values
     const hours = parseFloat(hoursSlider.value);
-    const messages = parseInt(messagesSlider.value);
+    const messages = parseInt(messagesSlider.value); // Now treated as weekly messages
     const saleValue = parseFloat(saleSlider.value);
 
     // Update UI
@@ -50,7 +50,12 @@ function bigbot_calculate_roi() {
 
     const dailyTimeSavings = hours * hourlyRate;
     const monthlyEmployeeCostSavings = dailyTimeSavings * 22;
-    const monthlyRevenueFromRecoveredLeads = messages * saleValue * 0.2 * 30;
+
+    // 🔄 UPDATED LOGIC: Use weekly messages instead of daily; 4.33 weeks/month assumed
+    const monthlyRecoveredMessages = messages * 4.33;
+    const monthlyRevenueFromRecoveredLeads =
+      monthlyRecoveredMessages * saleValue * 0.2;
+
     const totalMonthlyImpact =
       monthlyEmployeeCostSavings + monthlyRevenueFromRecoveredLeads;
     const annualImpact = totalMonthlyImpact * 12;
@@ -75,14 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!isROIPage) return; // Don’t run on pages without the calculator
 
   try {
-    ["bigbot-hours-slider", "bigbot-messages-slider", "bigbot-sale-slider"].forEach(
-      (id) => {
-        const slider = document.getElementById(id);
-        if (slider) {
-          slider.addEventListener("input", bigbot_calculate_roi);
-        }
+    [
+      "bigbot-hours-slider",
+      "bigbot-messages-slider",
+      "bigbot-sale-slider",
+    ].forEach((id) => {
+      const slider = document.getElementById(id);
+      if (slider) {
+        slider.addEventListener("input", bigbot_calculate_roi);
       }
-    );
+    });
 
     // Initial run
     bigbot_calculate_roi();

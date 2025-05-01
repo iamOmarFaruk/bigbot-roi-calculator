@@ -24,7 +24,7 @@
 
       <div class="bigbot-input-section">
         <div class="bigbot-input-label">
-          <span>Missed or delayed messages daily:</span>
+          <span>Weekly average number of messages received that take longer than 20 minutes to respond or follow up:</span>
           <span class="bigbot-input-value" id="bigbot-messages-value">10 messages</span>
         </div>
         <div class="bigbot-slider-container">
