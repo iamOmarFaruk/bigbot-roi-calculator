@@ -12,14 +12,24 @@ defined('ABSPATH') or die('No script kiddies please!');
 // Load assets
 function bigbot_enqueue_assets() {
     wp_enqueue_style('bigbot-roi-style', plugin_dir_url(__FILE__) . 'roi_style.css');
-    wp_enqueue_script('bigbot-roi-script', plugin_dir_url(__FILE__) . 'roi_calculator.js', [], false, true);
-     // Pass hourly rate to JS
+
+    // Make roi_calculator.js dependent on jQuery
+    wp_enqueue_script(
+        'bigbot-roi-script',
+        plugin_dir_url(__FILE__) . 'roi_calculator.js',
+        ['jquery'], // <-- jQuery dependency
+        false,
+        true
+    );
+
+    // Pass hourly rate to JS
     $hourlyRate = get_option('bigbot_hourly_rate', 30);
     wp_localize_script('bigbot-roi-script', 'bigbotSettings', [
         'hourlyRate' => floatval($hourlyRate)
     ]);
 }
 add_action('wp_enqueue_scripts', 'bigbot_enqueue_assets');
+
 
 // Shortcode: [bigbot-roi]
 function bigbot_roi_shortcode() {
