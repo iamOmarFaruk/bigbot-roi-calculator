@@ -12,11 +12,11 @@
         <th scope="row">Button Link</th>
         <td><input type="url" name="bigbot_btn_link" value="<?php echo esc_url(get_option('bigbot_btn_link', '#')); ?>" class="regular-text"></td>
       </tr>
-      <tr>
+      <tr style="display:none">
         <th scope="row">Hourly Rate (USD)</th>
         <tr>
-  <th scope="row">Hourly Rate (USD)</th>
-  <td>
+  <th scope="row " style="display:none">Hourly Rate (USD)</th>
+  <td style="display:none">
     <input type="number" name="bigbot_hourly_rate" 
            value="<?php echo esc_attr(get_option('bigbot_hourly_rate', 30)); ?>" 
            class="small-text" min="1" step="1" required>
