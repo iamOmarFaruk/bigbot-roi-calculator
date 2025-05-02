@@ -11,7 +11,7 @@
           <span class="bigbot-input-value" id="bigbot-hours-value">2 hours</span>
         </div>
         <div class="bigbot-slider-container">
-          <input type="range" min="0" max="8" value="2" step="0.5" class="bigbot-slider" id="bigbot-hours-slider">
+          <input type="range" min="0" max="8" value="2" step="1" class="bigbot-slider" id="bigbot-hours-slider">
         </div>
         <div class="bigbot-slider-labels">
           <span>0h</span>
@@ -21,6 +21,9 @@
           <span>8h</span>
         </div>
       </div>
+
+
+
 
       <div class="bigbot-input-section">
         <div class="bigbot-input-label">
@@ -38,6 +41,10 @@
           <span>50</span>
         </div>
       </div>
+
+
+
+      
 
       <div class="bigbot-input-section">
         <div class="bigbot-input-label">
@@ -61,30 +68,25 @@
       <h2>Your Potential ROI with <span class="secondary_font">BigBot </span></h2>
 
       <div class="bigbot-result-row">
-        <span>Daily time savings:</span>
-        <span class="bigbot-result-value" id="bigbot-daily-savings">$60</span>
-      </div>
-
-      <div class="bigbot-result-row">
         <span>Monthly employee cost savings:</span>
-        <span class="bigbot-result-value" id="bigbot-monthly-savings">$1,320</span>
+        <span class="bigbot-result-value" id="bigbot-monthly-savings"></span>
       </div>
 
       <div class="bigbot-result-row">
         <span>Monthly revenue from recovered leads:</span>
-        <span class="bigbot-result-value" id="bigbot-monthly-revenue">$30,000</span>
+        <span class="bigbot-result-value" id="bigbot-monthly-revenue"></span>
       </div>
 
       <p class="bigbot-note">This is based on an estimated 20% close rate from recovered leads</p>
 
       <div class="bigbot-total-row">
         <span class="bigbot-monthly-impact-lebel">Total monthly impact:</span>
-        <span class="bigbot-result-value" id="bigbot-monthly-impact">$31,320</span>
+        <span class="bigbot-result-value" id="bigbot-monthly-impact"></span>
       </div>
 
       <div class="bigbot-annual-row">
         <span class="bigbot-annual-impact-lebel">Annual impact:</span>
-        <span class="bigbot-result-value" id="bigbot-annual-impact">$375,840</span>
+        <span class="bigbot-result-value" id="bigbot-annual-impact"></span>
       </div>
 
      
