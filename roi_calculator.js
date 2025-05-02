@@ -1,43 +1,55 @@
 jQuery(document).ready(function ($) {
-  if ($(".bigbot-calculator-container").length) {
-    // ============== reactable UI
-    // Hours daily
-    function calculateMonthlySavings() {
-      const dailyHours = parseInt($("#bigbot-hours-slider").val(), 10);
-      const hourlyRate = 30; // fixed
-      const workingDays = 20;
-      const monthlySavings = dailyHours * hourlyRate * workingDays;
+  if (!$(".bigbot-calculator-container").length) return;
 
-      $("#bigbot-monthly-savings").text("$" + monthlySavings.toLocaleString());
-    }
+  /* === Constants (tweak if needed) === */
+  const HOURLY_RATE = 30; // $ per employee hour
+  const WORKING_DAYS_PER_MONTH = 20; // typical month
+  const WEEKS_PER_MONTH = 4; // fixed at 4 weeks per month
+  const CLOSE_RATE = 0.2; // 20 % of recovered leads convert
 
-    // Update on slider move
-    $("#bigbot-hours-slider").on("input", function () {
-      $("#bigbot-hours-value").text($(this).val() + " hours");
-      calculateMonthlySavings();
-    });
+  /* Helper: currency formatter */
+  const fmt = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
 
-    // Initial run
-    calculateMonthlySavings();
+  /* === Core calculation === */
+  function updateCalculator() {
+    // Raw slider values
+    const dailyHours = +$("#bigbot-hours-slider").val();
+    const weeklyMsgs = +$("#bigbot-messages-slider").val();
+    const saleValue = +$("#bigbot-sale-slider").val();
 
+    /* 1. Employee cost savings */
+    const monthlySavings = dailyHours * HOURLY_RATE * WORKING_DAYS_PER_MONTH;
 
-    // Weekly message
-    $("#bigbot-messages-slider").on("input", function () {
-      $("#bigbot-messages-value").text($(this).val() + " messages");
-    });
+    /* 2. Revenue from leads */
+    const monthlyRevenue =
+      weeklyMsgs * WEEKS_PER_MONTH * CLOSE_RATE * saleValue;
 
-    // Average value of a closed sale
-    $("#bigbot-sale-slider").on("input", function () {
-      $("#bigbot-sale-value").text("$" + $(this).val());
-    });
+    /* 3. Totals */
+    const totalMonthlyImpact = monthlySavings + monthlyRevenue;
+    const annualImpact = totalMonthlyImpact * 12;
 
+    /* === Write to DOM === */
+    $("#bigbot-hours-value").text(
+      `${dailyHours} hour${dailyHours !== 1 ? "s" : ""}`
+    );
+    $("#bigbot-messages-value").text(
+      `${weeklyMsgs} message${weeklyMsgs !== 1 ? "s" : ""}`
+    );
+    $("#bigbot-sale-value").text(fmt.format(saleValue));
 
-
-
-
-    // calculation part
-
-
-
+    $("#bigbot-monthly-savings").text(fmt.format(monthlySavings));
+    $("#bigbot-monthly-revenue").text(fmt.format(monthlyRevenue));
+    $("#bigbot-monthly-impact").text(fmt.format(totalMonthlyImpact));
+    $("#bigbot-annual-impact").text(fmt.format(annualImpact));
   }
+
+  /* === Bind sliders === */
+  $(".bigbot-slider").on("input", updateCalculator);
+
+  /* First paint */
+  updateCalculator();
 });
